@@ -1,11 +1,11 @@
 # TODO
 
-1. [ ] A form on top to create or update todo
+1. [x] A form on top to create or update todo
     * Title
     * Description
     * Datetime created
     * Priorities (green, yellow, red)
-2. [ ] There are 3 types of todo:
+2. [x] There are 3 types of todo:
     * all
     * pending
     * done

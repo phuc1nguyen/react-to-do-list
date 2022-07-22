@@ -11,7 +11,7 @@ export default function TaskStatusBar() {
         <li className="task-status-item is-active">
           <a className="has-text-weight-bold">
             <FaCalendarDay style={iconSpacing} />
-            <span className="is-hidden-touch">Doing</span>
+            <span className="is-hidden-touch">To Do</span>
           </a>
         </li>
         <li className="task-status-item">

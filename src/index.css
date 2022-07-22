@@ -1,6 +1,7 @@
 body {
   font-family: 'Edu NSW ACT Foundation';
   user-select: none;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -17,7 +18,7 @@ a {
   flex: 1;
   display: flex;
   align-items: stretch;
-  position: relative;
+  user-select: text;
 }
 
 .h-100 {
@@ -40,4 +41,9 @@ a {
 
 .label {
   font-size: 1.5rem;
+}
+
+.tabs li.is-active a {
+  /* color: #f14668; */
+  color: #00d1b2;
 }
