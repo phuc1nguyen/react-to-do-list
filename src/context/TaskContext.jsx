@@ -80,6 +80,8 @@ export function TaskProvider(props) {
       newTask,
       ...tasks,
     ]);
+
+    clearForm();
   };
 
   const handleDateChange = date => {
