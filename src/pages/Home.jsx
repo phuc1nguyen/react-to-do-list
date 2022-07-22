@@ -1,30 +1,51 @@
 import { useEffect } from 'react';
-import TaskForm from '../tasks/TaskForm';
-import TaskDisplay from '../tasks/TaskDisplay';
+import TaskForm from '../components/tasks/TaskForm';
+import TaskDisplay from '../components/tasks/TaskDisplay';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
 
 export default function Home() {
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-  }, []);
 
   const handleScroll = () => {
     const scrollEnd = (window.innerHeight + window.scrollY);
 
     if (scrollEnd >= document.body.offsetHeight) {
+      // Todo: add bottom: 5rem to styles
       console.log('end of page');
     }
   };
+
+  const changeActiveStatus = e => {
+    const active = e.target.closest('.task-status').querySelector('.is-active');
+    active.classList.remove('is-active');  
+    e.target.closest('.task-status-item').classList.add('is-active');
+    console.log('changed task status');
+  }
 
   const boxShadow = {
     boxShadow: '0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)',
   };
 
-  let homeBtnStyle = {
+  const homeBtnStyle = {
     zIndex: 1,
     position: 'fixed',
     bottom: '1rem',
   };
+
+  useEffect(() => {
+    const items = document.querySelectorAll('.task-status-item');
+
+    window.addEventListener('scroll', handleScroll);
+    items.forEach(el => {
+      el.addEventListener('click', changeActiveStatus);
+    });
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      items.forEach(el => {
+        el.removeEventListener('click', changeActiveStatus);
+      });
+    };
+  }, []);
 
   return (
     <main className="main-content">

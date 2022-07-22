@@ -8,7 +8,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 22, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 2,
@@ -16,7 +16,7 @@ export default function TaskList() {
       description: "This is a sample to do task but this particular one has significantly more text to check if the card container can scale beyond infinity",
       deadline: "Jul 21, 2022",
       priority: "medium",
-      status: false,
+      done: false,
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 4,
@@ -32,7 +32,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 5,
@@ -40,7 +40,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 6,
@@ -48,7 +48,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 7,
@@ -56,7 +56,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 8,
@@ -64,7 +64,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 9,
@@ -72,7 +72,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
     {
       id: 10,
@@ -80,7 +80,7 @@ export default function TaskList() {
       description: "This is a sample to do task",
       deadline: "Jul 21, 2022",
       priority: "low",
-      status: false,
+      done: false,
     },
   ];
 

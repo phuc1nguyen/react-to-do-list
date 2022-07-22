@@ -2,7 +2,6 @@ import DatePicker from "react-widgets/DatePicker";
 import "react-widgets/styles.css";
 
 export default function TaskForm() {
-
   return (
     <form className="my-form h-100">
       <div className="field">
