@@ -45,9 +45,9 @@ export default function TaskForm() {
 
       </div>
 
-      <div className="control form-btns w-100 is-flex is-justify-content-space-between">
-        <button type="button" className="button is-info">CLEAR</button>
-        <button type="submit" className="button is-danger">CREATE</button>
+      <div className="form-btns control w-100 is-flex is-justify-content-space-between">
+        <button type="button" className="button is-primary">CLEAR</button>
+        <button type="button" className="button is-danger">CREATE</button>
       </div>
 
     </form>
