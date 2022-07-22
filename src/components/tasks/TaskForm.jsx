@@ -1,9 +1,13 @@
 import DatePicker from "react-widgets/DatePicker";
 import "react-widgets/styles.css";
+import { useContext } from "react";
+import TaskContext from "../../context/TaskContext";
 
 export default function TaskForm() {
+  const { handleChange, handleSubmit } = useContext(TaskContext);
+
   return (
-    <form className="my-form h-100">
+    <form className="my-form h-100" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="title" className="label">Title</label>
         <div className="control">
@@ -21,9 +25,12 @@ export default function TaskForm() {
       <div className="field">
         <label htmlFor="datetime" className="label">Deadline</label>
         <div className="control flex space-x-2 w-full">
+          <input type="hidden" id="datetime" />
           <DatePicker
+            onChange={handleChange}
             defaultValue={new Date()}
-            valueFormat={{ dateStyle: "medium" }}
+            valueEditFormat={{ dateStyle: "long" }}
+            includeTime
           />
         </div>
       </div>
@@ -42,7 +49,7 @@ export default function TaskForm() {
 
       <div className="form-btns control w-100 is-flex is-justify-content-space-between">
         <button type="button" className="button is-danger">CLEAR</button>
-        <button type="button" className="button is-primary">CREATE</button>
+        <button type="submit" className="button is-primary">CREATE</button>
       </div>
     </form>
   );

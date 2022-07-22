@@ -1,4 +1,5 @@
 import { FaList, FaCalendarCheck, FaCalendarDay } from "react-icons/fa";
+import TaskStatusTab from './TaskStatusTab';
 
 export default function TaskStatusBar() {
   const iconSpacing = {
@@ -8,7 +9,7 @@ export default function TaskStatusBar() {
   return (
     <div className="tabs is-fullwidth is-boxed is-medium">
       <ul className="task-status">
-        <li className="task-status-item is-active">
+        {/* <li className="task-status-item is-active">
           <a className="has-text-weight-bold">
             <FaCalendarDay style={iconSpacing} />
             <span className="is-hidden-touch">To Do</span>
@@ -25,7 +26,16 @@ export default function TaskStatusBar() {
             <FaList style={iconSpacing} />
             <span className="is-hidden-touch">All</span>
           </a>
-        </li>
+        </li> */}
+        <TaskStatusTab name='To Do'>
+          <FaCalendarDay style={iconSpacing} />
+        </TaskStatusTab>
+        <TaskStatusTab name='Done'>
+          <FaCalendarCheck style={iconSpacing} />
+        </TaskStatusTab>
+        <TaskStatusTab name='All'>
+          <FaList style={iconSpacing} />
+        </TaskStatusTab>
       </ul>
     </div>
   );

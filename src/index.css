@@ -47,3 +47,8 @@ a {
   /* color: #f14668; */
   color: #00d1b2;
 }
+
+sup {
+  font-size: 20px;
+  color: #f14668;
+}
