@@ -6,7 +6,6 @@ import NotFound from './pages/404';
 import { TaskProvider } from './context/TaskContext';
 
 export default function App() {
-
   return (
     <TaskProvider>
       <div className="wrapper">

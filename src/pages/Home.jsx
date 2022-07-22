@@ -1,20 +1,13 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import TaskForm from '../components/tasks/TaskForm';
 import TaskDisplay from '../components/tasks/TaskDisplay';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
+import TaskContext from '../context/TaskContext';
 
 export default function Home() {
-  const handleScroll = () => {
-    // update two bottom buttons when scroll to bottom of the page
-    const scrollEnd = (window.innerHeight + window.scrollY);
+  const { clearTasks } = useContext(TaskContext);
 
-    if (scrollEnd >= document.body.offsetHeight) {
-      // Todo: add bottom: 5rem to styles -> useState()
-      console.log('end of page');
-    }
-  };
-
-  const changeActiveTab = (e) => {
+  const changeActiveTab = e => {
     // update class is-active on task status tab, remove is-active class from <ul>
     const active = e.target.closest('.task-status').querySelector('.is-active');
     if (active) active.classList.remove('is-active');  
@@ -30,19 +23,17 @@ export default function Home() {
   const homeBtnStyle = {
     zIndex: 1,
     position: 'fixed',
-    bottom: '1rem',
+    bottom: '5rem',
   };
 
   useEffect(() => {
-    const tabs = document.querySelectorAll('.task-status-item');   // items = ['todo', 'done', 'all'];
+    const tabs = document.querySelectorAll('.task-status-item');
 
-    window.addEventListener('scroll', handleScroll);
     tabs.forEach(tab => {
       tab.addEventListener('click', changeActiveTab);
     });
   
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       tabs.forEach(tab => {
         tab.removeEventListener('click', changeActiveTab);
       });
@@ -60,11 +51,11 @@ export default function Home() {
         </div>
       </div>
 
-      <button type='button' className='button is-primary has-text-light is-focused is-hidden-desktop' style={{ ...homeBtnStyle, left: '1rem' }}>
+      <button type='button' className='button home-btn is-primary has-text-light is-focused is-hidden-desktop' style={{ ...homeBtnStyle, left: '1rem' }}>
         <FaPlus />
       </button>
 
-      <button type='button' className='button is-danger has-text-light is-focused' style={{ ...homeBtnStyle, right: '1rem' }}>
+      <button type='button' className='button home-btn is-danger has-text-light is-focused' style={{ ...homeBtnStyle, right: '1rem' }} onClick={clearTasks}>
         <FaTrashAlt />
       </button>
     </div>

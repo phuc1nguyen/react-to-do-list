@@ -93,7 +93,7 @@ export function TaskProvider(props) {
     e.preventDefault();
 
     const title = document.getElementById('title').value;
-    if (title === '') {
+    if (title.trim() === '') {
       alert('Please enter task title');
       return;
     }
@@ -133,11 +133,22 @@ export function TaskProvider(props) {
     datetime.value = date.toLocaleString();
   };
 
+  const clearTasks = () => {
+    if (tasks.length > 0) {
+      if (confirm('Clear all tasks and can not undo?')) {
+        setTasks([]);
+      }
+    } else {
+      alert('There is no task');
+    }
+  }
+
   return (
     <TaskContext.Provider value={{
       tasks,
       handleSubmit,
       handleChange,
+      clearTasks,
     }}>
       {props.children}
     </TaskContext.Provider>
