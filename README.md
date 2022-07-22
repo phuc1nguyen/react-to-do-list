@@ -10,7 +10,7 @@
     * pending
     * done
 3. [ ] Add, edit, remove a single todo
-4. [ ] Button to clear all todos
+4. [x] Button to clear all todos
 5. [ ] Sort todos by:
     * [ ] title (a-z)
     * [ ] datetime

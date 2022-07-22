@@ -9,7 +9,7 @@ export function TaskProvider(props) {
       id: 1,
       title: "Task 1",
       description: "This is a sample to do task",
-      deadline: "Jul 22, 2022",
+      deadline: "7/23/2022, 12:44:03 AM",
       priority: "low",
       done: false,
     },
@@ -17,7 +17,7 @@ export function TaskProvider(props) {
       id: 2,
       title: "Task 2",
       description: "This is a sample to do task but this particular one has significantly more text to check if the card container can scale beyond infinity",
-      deadline: "Jul 21, 2022",
+      deadline: "7/23/2022, 12:44:03 AM",
       priority: "medium",
       done: false,
     },
@@ -25,7 +25,7 @@ export function TaskProvider(props) {
       id: 3,
       title: "Task 3",
       description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
+      deadline: "7/23/2022, 12:44:03 AM",
       priority: "low",
       done: false,
     },
@@ -33,62 +33,17 @@ export function TaskProvider(props) {
       id: 4,
       title: "Task 4",
       description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
-      priority: "low",
-      done: false,
-    },
-    {
-      id: 5,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
-      priority: "low",
-      done: false,
-    },
-    {
-      id: 6,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
-      priority: "low",
-      done: false,
-    },
-    {
-      id: 7,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
-      priority: "low",
-      done: false,
-    },
-    {
-      id: 8,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
-      priority: "low",
-      done: false,
-    },
-    {
-      id: 9,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
-      priority: "low",
-      done: false,
-    },
-    {
-      id: 10,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Jul 21, 2022",
+      deadline: "7/23/2022, 12:44:03 AM",
       priority: "low",
       done: false,
     },
   ];
 
+  // States
   const [tasks, setTasks] = useState(initialTasks);
+  const [date, setDate] = useState(new Date());
 
+  // Custom functions
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -127,10 +82,18 @@ export function TaskProvider(props) {
     ]);
   };
 
-  const handleChange = date => {
+  const handleDateChange = date => {
     // get picked date from calendar to hidden input value 
     const datetime = document.getElementById('datetime');
     datetime.value = date.toLocaleString();
+    setDate(date);
+  };
+
+  const clearForm = () => {
+    document.querySelector('#title').value = '';
+    document.querySelector('#description').value = '';
+    setDate(new Date());
+    document.querySelector('#priority').value = '0';
   };
 
   const clearTasks = () => {
@@ -141,13 +104,15 @@ export function TaskProvider(props) {
     } else {
       alert('There is no task');
     }
-  }
+  };
 
   return (
     <TaskContext.Provider value={{
       tasks,
+      date,
       handleSubmit,
-      handleChange,
+      handleDateChange,
+      clearForm,
       clearTasks,
     }}>
       {props.children}
