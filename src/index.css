@@ -1,0 +1,42 @@
+body {
+  font-family: 'Edu NSW ACT Foundation';
+  user-select: none;
+}
+
+a {
+  color: #f14668;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.my-form {
+  position: relative;
+  min-height: 35rem;
+}
+
+.form-btns {
+  position: absolute;
+  bottom: 0;
+}
+
+.label {
+  font-size: 1.5rem;
+}

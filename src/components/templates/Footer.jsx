@@ -1,7 +1,13 @@
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <div className="container">
-      <p>create by <a href="https://github.com/phuc1nguyen">phuc1nguyen</a></p>
-    </div>
+    <footer id="footer" className="p-5 has-background-light">
+      <div className="content">
+        <p className="has-text-centered">created by{' '}
+          <a href="https://github.com/phuc1nguyen" target="_blank">phuc1nguyen</a>{' '}&copy; {year}
+        </p>
+      </div>
+    </footer>  
   );
 }
