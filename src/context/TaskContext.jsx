@@ -47,7 +47,6 @@ export function TaskProvider(props) {
   });
 
   const completeTask = (task) => {
-    console.log('complete', task);
     if (task.status) task.status = false;
     else task.status = true;
     // setTasks([...tasks]); --> didn't use this because I want the modified task to be the first on the other list (doing/done)

@@ -13,13 +13,13 @@ export default function TaskItem(props) {
             {props.task.title}
           </p>
           <button className="card-header-icon py-1 px-3" aria-label="complete task" onClick={() => completeTask(props.task)}>
-            {props.task.status === false ? (
+            {!props.task.status ? (
               <span className="icon has-text-success">
-                <FaCalendarCheck /> 
+                <FaCalendarCheck />
               </span>
             ) : (
               <span className="icon has-text-warning">
-                <FaCalendarTimes /> 
+                <FaCalendarTimes />
               </span>
             )}
           </button>
