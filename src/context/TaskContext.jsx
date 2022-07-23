@@ -11,7 +11,7 @@ export function TaskProvider(props) {
       description: "This is a sample to do task",
       deadline: "7/23/2022, 12:44:03 AM",
       priority: "low",
-      done: false,
+      status: false,
     },
     {
       id: 2,
@@ -19,7 +19,7 @@ export function TaskProvider(props) {
       description: "This is a sample to do task but this particular one has significantly more text to check if the card container can scale beyond infinity",
       deadline: "7/23/2022, 12:44:03 AM",
       priority: "medium",
-      done: false,
+      status: true,
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ export function TaskProvider(props) {
       description: "This is a sample to do task",
       deadline: "7/23/2022, 12:44:03 AM",
       priority: "low",
-      done: false,
+      status: false,
     },
     {
       id: 4,
@@ -35,15 +35,13 @@ export function TaskProvider(props) {
       description: "This is a sample to do task",
       deadline: "7/23/2022, 12:44:03 AM",
       priority: "low",
-      done: false,
+      status: false,
     },
   ];
 
-  // States
   const [tasks, setTasks] = useState(initialTasks);
   const [date, setDate] = useState(new Date());
 
-  // Custom functions
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -58,9 +56,9 @@ export function TaskProvider(props) {
       datetime = (new Date()).toLocaleString();
     } 
     let priority = parseInt(document.getElementById('priority').value);
-    if (priority === '3') {
+    if (priority === 3) {
       priority = 'high';
-    } else if (priority === '2') {
+    } else if (priority === 2) {
       priority = 'medium';
     } else {
       // if user don't pick or change the value of option before submitting
@@ -73,14 +71,10 @@ export function TaskProvider(props) {
       description: description,
       deadline: datetime,  
       priority: priority,
-      done: false,
+      status: 0,
     };
 
-    setTasks([
-      newTask,
-      ...tasks,
-    ]);
-
+    setTasks([newTask, ...tasks]);
     clearForm();
   };
 

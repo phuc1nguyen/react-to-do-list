@@ -6,9 +6,9 @@
     * Datetime created
     * Priorities (green, yellow, red)
 2. [x] There are 3 types of todo:
-    * all
-    * pending
-    * done
+    * all (2)
+    * pending (0)
+    * done (1)
 3. [ ] Add, edit, remove a single todo
     * [x] add
     * [ ] edit

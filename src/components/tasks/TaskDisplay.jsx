@@ -1,11 +1,12 @@
+import { useState } from "react";
 import TaskList from "./TaskList";
 import TaskStatusBar from "./TaskStatusBar";
 
-export default function TaskDisplay() {
+export default function TaskDisplay(props) {
   return (
     <>
-      <TaskStatusBar />
-      <TaskList />
+      <TaskStatusBar status={props.status} />
+      <TaskList status={props.status} />
     </>
   );
 }

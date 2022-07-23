@@ -51,3 +51,7 @@ sup {
   font-size: 20px;
   color: #f14668;
 }
+
+.has-text-warning {
+  color: #ffbb00!important;
+}

@@ -1,17 +1,23 @@
-import { FaTrash, FaEdit, FaCalendarCheck } from "react-icons/fa";
+import { FaTrash, FaEdit, FaCalendarCheck, FaCalendarTimes } from "react-icons/fa";
 
 export default function TaskItem(props) {
   return (
     <div className="column is-one-third" style={props.style}>
-      <div className="card">
+      <div className="card has-background-light">
         <header className="card-header">
           <p className="card-header-title">
             {props.task.title}
           </p>
           <button className="card-header-icon py-1 px-3" aria-label="complete task">
-            <span className="icon has-text-success">
-              <FaCalendarCheck />
-            </span>
+            {props.task.status === false ? (
+              <span className="icon has-text-success">
+                <FaCalendarCheck /> 
+              </span>
+            ) : (
+              <span className="icon has-text-warning">
+                <FaCalendarTimes /> 
+              </span>
+            )}
           </button>
           <button className="card-header-icon py-1 px-3" aria-label="edit task">
             <span className="icon has-text-info">
@@ -29,8 +35,13 @@ export default function TaskItem(props) {
             {props.task.description}
           </div>
         </div>
-        <footer className="card-footer">
+        <footer className="card-footer is-flex is-justify-content-space-between">
           <span className="p-3">{props.task.deadline}</span>
+          <span className={`p-3 has-text-primary has-text-weight-bold 
+            ${props.task.priority === 'low' ? 'has-text-primary' : ''}
+            ${props.task.priority === 'medium' ? 'has-text-warning' : ''}   
+            ${props.task.priority === 'high' ? 'has-text-danger' : ''}   
+          `}>{props.task.priority.toUpperCase()}</span>
         </footer>
       </div>
     </div>

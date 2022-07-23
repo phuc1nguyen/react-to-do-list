@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import TaskForm from '../components/tasks/TaskForm';
 import TaskDisplay from '../components/tasks/TaskDisplay';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
@@ -6,6 +6,7 @@ import TaskContext from '../context/TaskContext';
 
 export default function Home() {
   const { clearTasks } = useContext(TaskContext);
+  const [taskStatus, setTaskStatus] = useState(false);
 
   const changeActiveTab = e => {
     // update class is-active on task status tab, remove is-active class from <ul>
@@ -14,6 +15,10 @@ export default function Home() {
     // update class is-active on clicked <li>
     const statusTab = e.target.closest('.task-status-item');
     statusTab.classList.add('is-active');
+    // update state to display tasks based on which tab you choose
+    if (statusTab.dataset.status === 'false') setTaskStatus(false);
+    else if (statusTab.dataset.status === 'true') setTaskStatus(true);
+    else setTaskStatus(null);
   }
 
   const boxShadow = {
@@ -47,7 +52,7 @@ export default function Home() {
           <TaskForm />
         </div>
         <div className="column p-5">
-          <TaskDisplay />
+          <TaskDisplay status={taskStatus} />
         </div>
       </div>
 
