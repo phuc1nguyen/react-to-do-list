@@ -41,6 +41,40 @@ export function TaskProvider(props) {
 
   const [tasks, setTasks] = useState(initialTasks);
   const [date, setDate] = useState(new Date());
+  const [editStatus, setEditStatus] = useState({
+    item: {},
+    edit: false,
+  });
+
+  const completeTask = (task) => {
+    console.log('complete', task);
+    if (task.status) task.status = false;
+    else task.status = true;
+    // setTasks([...tasks]); --> didn't use this because I want the modified task to be the first on the other list (doing/done)
+    // so add a new status modified task to the list and remove the old one
+    setTasks([task, ...tasks.filter(item => item.id !== task.id)]);
+  };
+
+  const addTask = (newTask) => {
+    setTasks([newTask, ...tasks]);
+  };
+
+  const editTask = (task) => {
+    setEditStatus({
+      item: task,
+      edit: true,
+    });
+  };
+
+  const updateTask = (id, updated) => {
+    console.log(id, updated);
+  };
+
+  const removeTask = (task) => {
+    if (confirm(`Remove ${task.title} from list?`)) {
+      setTasks(tasks.filter(item => item.id !== task.id));
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,7 +98,7 @@ export function TaskProvider(props) {
       // if user don't pick or change the value of option before submitting
       priority = 'low';
     }
-  
+
     const newTask = {
       id: uuidv4(),
       title: title,
@@ -74,7 +108,12 @@ export function TaskProvider(props) {
       status: 0,
     };
 
-    setTasks([newTask, ...tasks]);
+    if (editStatus.edit) {
+      updateTask(editStatus.item.id, newTask);
+    } else {
+      addTask(newTask);
+    }
+  
     clearForm();
   };
 
@@ -90,9 +129,16 @@ export function TaskProvider(props) {
     document.querySelector('#description').value = '';
     setDate(new Date());
     document.querySelector('#priority').value = '0';
+    if (editStatus.edit) {
+      setEditStatus({
+        item: {},
+        edit: false,
+      });
+    } 
   };
 
   const clearTasks = () => {
+    // remove all tasks
     if (tasks.length > 0) {
       if (confirm('Clear all tasks and can not undo?')) {
         setTasks([]);
@@ -106,6 +152,10 @@ export function TaskProvider(props) {
     <TaskContext.Provider value={{
       tasks,
       date,
+      editStatus,
+      completeTask,
+      editTask,
+      removeTask,
       handleSubmit,
       handleDateChange,
       clearForm,

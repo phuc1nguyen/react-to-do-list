@@ -9,16 +9,19 @@ export default function Home() {
   const [taskStatus, setTaskStatus] = useState(false);
 
   const changeActiveTab = e => {
-    // update class is-active on task status tab, remove is-active class from <ul>
+    // update class is-active on task status bar, remove is-active class from <ul>'s child
     const active = e.target.closest('.task-status').querySelector('.is-active');
     if (active) active.classList.remove('is-active');  
-    // update class is-active on clicked <li>
+    // add class is-active on clicked <li>
     const statusTab = e.target.closest('.task-status-item');
     statusTab.classList.add('is-active');
     // update state to display tasks based on which tab you choose
+    // this below part (change state of TaskDisplay to choose tab then display tasks with that state) could be placed in TaskDisplay
+    // but since it's related to the styles above -> lift it up here (Home.jsx)
     if (statusTab.dataset.status === 'false') setTaskStatus(false);
     else if (statusTab.dataset.status === 'true') setTaskStatus(true);
     else setTaskStatus(null);
+    // then render items of TaskList based on the status state (true - done, false - doing, null - all tasks)
   }
 
   const boxShadow = {

@@ -12,7 +12,8 @@
 3. [ ] Add, edit, remove a single todo
     * [x] add
     * [ ] edit
-    * [ ] remove
+    * [x] remove
+    * [ ] toggle completed
 4. [x] Button to clear all todos
 5. [ ] Sort todos by:
     * [ ] title (a-z)
