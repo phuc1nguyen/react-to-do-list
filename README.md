@@ -2,7 +2,7 @@
 
 A simple tasks management application using **React**
 
-🔗 **Live** [here](https://github.com/phuc1nguyen/react-to-do-list)
+🔗 **Live** [here](https://phuc1nguyen.github.io/react-to-do-list/)
 
 ## Working on
 
@@ -12,9 +12,9 @@ A simple tasks management application using **React**
     * Datetime created
     * Priorities (green, yellow, red)
 2. [x] There are 3 types of todo:
-    * all (2)
-    * pending (0)
-    * done (1)
+    * all
+    * pending
+    * done
 3. [x] Button to clear all todos
 4. [x] Display tasks based on tasks' status
 4. [ ] Add, edit, remove a single todo

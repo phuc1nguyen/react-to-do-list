@@ -107,12 +107,7 @@ export function TaskProvider(props) {
       status: 0,
     };
 
-    if (editStatus.edit) {
-      updateTask(editStatus.item.id, newTask);
-    } else {
-      addTask(newTask);
-    }
-  
+    addTask(newTask);
     clearForm();
   };
 
@@ -128,12 +123,6 @@ export function TaskProvider(props) {
     document.querySelector('#description').value = '';
     setDate(new Date());
     document.querySelector('#priority').value = '0';
-    if (editStatus.edit) {
-      setEditStatus({
-        item: {},
-        edit: false,
-      });
-    } 
   };
 
   const clearTasks = () => {
