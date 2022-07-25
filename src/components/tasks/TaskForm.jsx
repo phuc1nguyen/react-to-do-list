@@ -4,28 +4,36 @@ import { useContext } from "react"
 import TaskContext from "../../context/TaskContext";
 
 export default function TaskForm() {
-  const { editStatus, date, handleDateChange, handleSubmit, clearForm } = useContext(TaskContext);
+  const { 
+    editStatus,
+    handleTitleChange,
+    handleDescriptionChange,
+    date,
+    handleDateChange,
+    handlePriorityChange,
+    handleSubmit,
+    clearForm,
+  } = useContext(TaskContext);
 
   return (
     <form className="my-form h-100" onSubmit={handleSubmit}>
       <div className="field">
         <label htmlFor="title" className="label">Title</label>
         <div className="control">
-          <input type="text" id="title" name="title" className="input is-info" placeholder="Title" defaultValue={editStatus.edit === true ? editStatus.item.title : ''}/>
+          <input type="text" id="title" name="title" className="input is-info" placeholder="Title" onChange={handleTitleChange} />
         </div>
       </div>
 
       <div className="field">
         <label htmlFor="description" className="label">Description</label>
         <div className="control">
-          <textarea name="description" id="description" className="textarea is-info" placeholder="More details" defaultValue={editStatus.edit === true ? editStatus.item.description : ''} />
+          <textarea name="description" id="description" className="textarea is-info" placeholder="More details" onChange={handleDescriptionChange} />
         </div>
       </div>
 
       <div className="field">
         <label htmlFor="datetime" className="label">Deadline</label>
         <div className="control flex space-x-2 w-full">
-          <input type="hidden" id="datetime" />
           <DatePicker
             value={date}
             onChange={handleDateChange}
@@ -37,7 +45,7 @@ export default function TaskForm() {
       <div className="field">
         <label htmlFor="priority" className="label">Priority</label>
         <div className="select is-info w-100">
-          <select id="priority" name="priority" className="w-100">
+          <select id="priority" name="priority" className="w-100" onChange={handlePriorityChange}>
             <option value="0">Select Priority</option>
             <option value="1">Low</option>
             <option value="2">Medium</option>
@@ -48,7 +56,7 @@ export default function TaskForm() {
 
       <div className="form-btns control w-100 is-flex is-justify-content-space-between">
         <button type="button" className="button is-danger" onClick={clearForm}>CLEAR</button>
-        {editStatus.edit === false ? (
+        {!editStatus.edit ? (
           <button type="submit" className="button is-primary">CREATE</button>
         ) : (
           <button type="submit" className="button is-primary">UPDATE</button>

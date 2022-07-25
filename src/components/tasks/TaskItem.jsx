@@ -31,7 +31,7 @@ function TaskItem(props) {
           </button>
           <button className="card-header-icon py-1 px-3" aria-label="remove task" onClick={() => removeTask(props.task)}>
             <span className="icon has-text-danger">
-              <FaTrash /> 
+              <FaTrash />
             </span>
           </button>
         </header>
@@ -41,7 +41,7 @@ function TaskItem(props) {
           </div>
         </div>
         <footer className="card-footer is-flex is-justify-content-space-between">
-          <span className="p-3">{props.task.deadline}</span>
+          <span className="p-3">{(new Date(props.task.deadline)).toLocaleString()}</span>
           <span className={`p-3 has-text-primary has-text-weight-bold 
             ${props.task.priority === 'low' ? 'has-text-primary' : ''}
             ${props.task.priority === 'medium' ? 'has-text-warning' : ''}   

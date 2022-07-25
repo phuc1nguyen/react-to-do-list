@@ -9,7 +9,7 @@ export function TaskProvider(props) {
       id: 1,
       title: "Task 1",
       description: "This is a sample to do task",
-      deadline: "7/23/2022, 12:44:03 AM",
+      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
       priority: "low",
       status: false,
     },
@@ -17,7 +17,7 @@ export function TaskProvider(props) {
       id: 2,
       title: "Task 2",
       description: "This is a sample to do task but this particular one has significantly more text to check if the card container can scale beyond infinity",
-      deadline: "7/23/2022, 12:44:03 AM",
+      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
       priority: "medium",
       status: true,
     },
@@ -25,7 +25,7 @@ export function TaskProvider(props) {
       id: 3,
       title: "Task 3",
       description: "This is a sample to do task",
-      deadline: "7/23/2022, 12:44:03 AM",
+      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
       priority: "low",
       status: false,
     },
@@ -33,18 +33,37 @@ export function TaskProvider(props) {
       id: 4,
       title: "Task 4",
       description: "This is a sample to do task",
-      deadline: "7/23/2022, 12:44:03 AM",
+      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
       priority: "low",
       status: false,
     },
   ];
 
   const [tasks, setTasks] = useState(initialTasks);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [date, setDate] = useState(new Date());
+  const [priority, setPriority] = useState(0);
   const [editStatus, setEditStatus] = useState({
     item: {},
     edit: false,
   });
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value); 
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleDateChange = (dateObj) => {
+    setDate(dateObj);
+  };
+
+  const handlePriorityChange = (e) => {
+    setPriority(e.target.value);
+  };
 
   const completeTask = (task) => {
     // task.status = !task.status;
@@ -77,12 +96,31 @@ export function TaskProvider(props) {
       item: task,
       edit: true,
     });
+
+    const editTitle = document.getElementById('title').value = task.title;
+    setTitle(editTitle);
+
+    const editDes = document.getElementById('description').value = task.description;
+    setDescription(editDes);
+
+    setDate(new Date(task.deadline));
+
+    const priorityField = document.getElementById('priority');
+    if (task.priority === 'high') {
+      priorityField.value = 3;
+    } else if (task.priority === 'medium') {
+      priorityField.value = 2;
+    } else {
+      priorityField.value = 1;
+    }
+    setPriority(priorityField.value);
   };
 
   const updateTask = (task) => {
     const newTasks = tasks.filter((item) => task.id !== item.id);
 
     setTasks([task, ...newTasks]);
+    setEditStatus({item: {}, edit: false});
   };
 
   const removeTask = (task) => {
@@ -94,24 +132,19 @@ export function TaskProvider(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const title = document.getElementById('title').value;
     if (title.trim() === '') {
+      // task title is required
       alert('Please enter task title');
       return;
     }
-    const description = document.getElementById('description').value;
-    let datetime = document.getElementById('datetime').value;
-    if (datetime.trim() === '') {
-      datetime = (new Date().toLocaleString());
-    } 
-    let priority = parseInt(document.getElementById('priority').value);
-    if (priority === 3) {
-      priority = 'high';
-    } else if (priority === 2) {
-      priority = 'medium';
+
+    let priorityStr = '';
+    if (priority === '3') {
+      priorityStr = 'high';
+    } else if (priority === '2') {
+      priorityStr = 'medium';
     } else {
-      // if user don't pick or change the value of option before submitting
-      priority = 'low';
+      priorityStr = 'low';
     }
 
     if (!editStatus.edit) {
@@ -119,8 +152,8 @@ export function TaskProvider(props) {
         id: uuidv4(),
         title: title,
         description: description,
-        deadline: datetime,
-        priority: priority,
+        deadline: String(date),
+        priority: priorityStr,
         status: false,
       };
 
@@ -130,8 +163,8 @@ export function TaskProvider(props) {
         id: editStatus.item.id,
         title: title,
         description: description,
-        deadline: datetime,
-        priority: priority,
+        deadline: String(date),
+        priority: priorityStr,
         status: editStatus.item.status,
       }
 
@@ -139,13 +172,6 @@ export function TaskProvider(props) {
     }
 
     clearForm();
-  };
-
-  const handleDateChange = date => {
-    // get picked date from calendar to hidden input value 
-    const datetime = document.getElementById('datetime');
-    datetime.value = date.toLocaleString();
-    setDate(date);
   };
 
   const clearForm = () => {
@@ -171,11 +197,14 @@ export function TaskProvider(props) {
       tasks,
       date,
       editStatus,
+      handleTitleChange,
+      handleDescriptionChange,
+      handlePriorityChange,
+      handleDateChange,
       completeTask,
       editTask,
       removeTask,
       handleSubmit,
-      handleDateChange,
       clearForm,
       clearTasks,
     }}>
