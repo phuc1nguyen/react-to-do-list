@@ -1,8 +1,7 @@
 import TaskList from "./TaskList";
 import TaskStatusBar from "./TaskStatusBar";
-import PropTypes from 'prop-types';
 
-function TaskDisplay(props) {
+export default function TaskDisplay(props) {
   return (
     <>
       <TaskStatusBar status={props.status} />
@@ -10,9 +9,3 @@ function TaskDisplay(props) {
     </>
   );
 }
-
-TaskDisplay.propTypes = {
-  status: PropTypes.bool.isRequired,
-}
-
-export default TaskDisplay;

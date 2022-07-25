@@ -1,9 +1,8 @@
 import { FaTrash, FaEdit, FaCalendarCheck, FaCalendarTimes } from "react-icons/fa";
 import { useContext } from "react";
 import TaskContext from "../../context/TaskContext";
-import PropTypes from 'prop-types';
 
-function TaskItem(props) {
+export default function TaskItem(props) {
   const { completeTask, editTask, removeTask } = useContext(TaskContext);
 
   return (
@@ -52,10 +51,3 @@ function TaskItem(props) {
     </div>
   );
 }
-
-TaskItem.propTypes = {
-  task: PropTypes.object.isRequired,
-  style: PropTypes.object.isRequired,
-};
-
-export default TaskItem;

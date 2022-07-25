@@ -1,7 +1,6 @@
 import { FaList, FaCalendarCheck, FaCalendarDay } from "react-icons/fa";
-import PropTypes from 'prop-types';
 
-function TaskStatusBar(props) {
+export default function TaskStatusBar(props) {
   const iconSpacing = {
     marginRight: '.5rem',
   };
@@ -31,9 +30,3 @@ function TaskStatusBar(props) {
     </div>
   );
 }
-
-TaskStatusBar.propTypes = {
-  status: PropTypes.bool.isRequired,
-};
-
-export default TaskStatusBar;
