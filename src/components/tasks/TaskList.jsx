@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import TaskContext from "../../context/TaskContext";
 import TaskItem from "./TaskItem";
+import PropTypes from 'prop-types';
 
-export default function TaskList(props) {
+function TaskList(props) {
   const { tasks } = useContext(TaskContext);
 
   return (props.status !== null ?
@@ -27,3 +28,9 @@ export default function TaskList(props) {
     )
   );
 }
+
+TaskList.propTypes = {
+  status: PropTypes.bool.isRequired,
+};
+
+export default TaskList;

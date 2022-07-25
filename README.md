@@ -6,33 +6,33 @@ A simple tasks management application using **React**
 
 ## Working on
 
-1. [x] A form on top to create or update todo
-    * Title
-    * Description
-    * Datetime created
-    * Priorities (green, yellow, red)
-2. [x] There are 3 types of todo:
-    * all
+1. [x] A form to create/update task
+    * title
+    * description
+    * datetime
+    * priorities
+2. [x] There are 3 types of task:
     * pending
     * done
-3. [x] Button to clear all todos
+    * all
+3. [x] Button to clear all tasks
 4. [x] Display tasks based on tasks' status
-4. [ ] Add, edit, remove a single todo
+5. [x] Add, edit, remove a single task
     * [x] add
-    * [ ] edit
+    * [x] edit
     * [x] remove
     * [x] toggle completed
-5. [ ] Other TaskForm for mobile
-6. [ ] Modals for notifications
-6. [ ] Use localStorage
-7. [ ] Refactor code (task actions, states)
-8. [ ] Sort todos by:
+6. [ ] Other TaskForm for mobile
+7. [ ] Modals for notifications
+8. [ ] Use localStorage
+9. [ ] Refactor code (task actions, states)
+10. [ ] Sort tasks by:
     * [x] last modified (default)
     * [ ] priorities
     * [ ] datetime
         * today
         * next week
-9. [ ] Unit tests?
+11. [ ] Unit tests?
 
 ## Summary
 

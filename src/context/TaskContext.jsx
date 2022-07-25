@@ -47,11 +47,25 @@ export function TaskProvider(props) {
   });
 
   const completeTask = (task) => {
-    if (task.status) task.status = false;
-    else task.status = true;
-    // setTasks([...tasks]); --> didn't use this because I want the modified task to be the first on the other list (doing/done)
-    // so add a new status modified task to the list and remove the old one
-    setTasks([task, ...tasks.filter(item => item.id !== task.id)]);
+    // task.status = !task.status;
+    // setTasks([task, ...tasks.filter(item => item.id !== task.id)]);
+    // ---> this way modify the original list by changing one task's status
+    let toggled = {};
+    let newTasks = tasks.map((item) => {
+      if (item.id === task.id) {
+        toggled = {
+          ...item,
+          status: !task.status,
+        };
+        return toggled;
+      } else {
+        return item;
+      }
+    }).filter((item) => item.id !== task.id);
+    // add newly updated task as the first item of the list
+    newTasks = [toggled, ...newTasks];
+    
+    setTasks(newTasks);
   };
 
   const addTask = (newTask) => {
@@ -65,8 +79,10 @@ export function TaskProvider(props) {
     });
   };
 
-  const updateTask = (id, updated) => {
-    console.log(id, updated);
+  const updateTask = (task) => {
+    const newTasks = tasks.filter((item) => task.id !== item.id);
+
+    setTasks([task, ...newTasks]);
   };
 
   const removeTask = (task) => {
@@ -85,8 +101,8 @@ export function TaskProvider(props) {
     }
     const description = document.getElementById('description').value;
     let datetime = document.getElementById('datetime').value;
-    if (datetime === '') {
-      datetime = (new Date()).toLocaleString();
+    if (datetime.trim() === '') {
+      datetime = (new Date().toLocaleString());
     } 
     let priority = parseInt(document.getElementById('priority').value);
     if (priority === 3) {
@@ -98,16 +114,30 @@ export function TaskProvider(props) {
       priority = 'low';
     }
 
-    const newTask = {
-      id: uuidv4(),
-      title: title,
-      description: description,
-      deadline: datetime,  
-      priority: priority,
-      status: 0,
-    };
+    if (!editStatus.edit) {
+      const newTask = {
+        id: uuidv4(),
+        title: title,
+        description: description,
+        deadline: datetime,
+        priority: priority,
+        status: false,
+      };
 
-    addTask(newTask);
+      addTask(newTask);
+    } else {
+      const updatedTask = {
+        id: editStatus.item.id,
+        title: title,
+        description: description,
+        deadline: datetime,
+        priority: priority,
+        status: editStatus.item.status,
+      }
+
+      updateTask(updatedTask);
+    }
+
     clearForm();
   };
 
