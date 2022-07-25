@@ -2,7 +2,7 @@
 
 A simple tasks management application using **React**
 
-🔗 **Live** [here](https://phuc1nguyen.github.io/react-to-do-list/)
+🔗 **Live** [here](https://todolist-phuc1nguyen.netlify.app/)
 
 ## Working on
 
