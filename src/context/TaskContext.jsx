@@ -56,6 +56,7 @@ export function TaskProvider(props) {
 
   const addTask = (newTask) => {
     setTasks([newTask, ...tasks]);
+    resetStates();
   };
 
   const editTask = (task) => {
@@ -97,12 +98,20 @@ export function TaskProvider(props) {
 
     setTasks([task, ...newTasks]);
     setEditStatus({item: {}, edit: false});
+    resetStates();
   };
 
   const removeTask = (task) => {
     if (confirm(`Remove ${task.title} from list?`)) {
       setTasks(tasks.filter(item => item.id !== task.id));
     }
+  };
+
+  const resetStates = () => {
+    setTitle('');
+    setDescription('');
+    setDate(new Date());
+    setPriority(0);
   };
 
   const handleSubmit = (e) => {
