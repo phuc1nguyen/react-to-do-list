@@ -27,7 +27,8 @@ export default function Home() {
   const openFormMobile = () => {
     const formMobile = document.querySelector('.my-form-mobile');
     formMobile.closest('.modal').classList.add('is-active');
-  }
+    document.querySelector('html').classList.add('is-clipped');
+  };
 
   const addFormMobileEvents = () => {
     // open form on mobile
@@ -47,8 +48,11 @@ export default function Home() {
     const plusBtn = document.querySelector('.plus-btn');
     plusBtn.removeEventListener('click', openFormMobile); 
 
-    document.querySelector('.modal-background').closest('.modal').removeEventListener('click', (e) => {
-      e.target.classList.remove('is-active');
+    const modalBg = document.querySelector('.modal-background');
+    modalBg.closest('.modal').removeEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-background')) {
+        modalBg.closest('.modal').classList.remove('is-active'); 
+      }
     });
   };
 
@@ -63,6 +67,26 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const test = JSON.stringify([
+      {
+        id: 1,
+        title: "Task 1",
+        description: "This is a sample to do task and you need to complete it",
+        deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
+        priority: "medium",
+        status: false,
+      },
+      {
+        id: 2,
+        title: "Task 2",
+        description: "This is a sample to do task and you have completed it",
+        deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
+        priority: "low",
+        status: true,
+      },
+    ]);
+    localStorage.setItem('tasks', test);
+
     const tabs = document.querySelectorAll('.task-status-item');
     tabs.forEach(tab => {
       tab.addEventListener('click', changeActiveTab);

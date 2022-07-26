@@ -4,40 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const TaskContext = createContext();
 
 export function TaskProvider(props) {
-  const initialTasks = [
-    {
-      id: 1,
-      title: "Task 1",
-      description: "This is a sample to do task",
-      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
-      priority: "low",
-      status: false,
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "This is a sample to do task but this particular one has significantly more text to check if the card container can scale beyond infinity",
-      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
-      priority: "medium",
-      status: true,
-    },
-    {
-      id: 3,
-      title: "Task 3",
-      description: "This is a sample to do task",
-      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
-      priority: "low",
-      status: false,
-    },
-    {
-      id: 4,
-      title: "Task 4",
-      description: "This is a sample to do task",
-      deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
-      priority: "low",
-      status: false,
-    },
-  ];
+  const initialTasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 
   const [tasks, setTasks] = useState(initialTasks);
   const [title, setTitle] = useState('');

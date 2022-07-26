@@ -57,7 +57,7 @@ export default function TaskFormMobile() {
             </div>
           </div>
 
-          <div className="form-btns control w-100 is-flex is-justify-content-space-between">
+          <div className="control w-100 is-flex is-justify-content-space-between mt-6">
             <button type="button" className="button is-danger" onClick={clearForm}>CLEAR</button>
             {!editStatus.edit ? (
               <button type="submit" className="button is-primary">CREATE</button>
