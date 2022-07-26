@@ -1,6 +1,6 @@
 import DatePicker from "react-widgets/DatePicker";
 import "react-widgets/styles.css";
-import { useContext } from "react"
+import { useContext } from "react";
 import TaskContext from "../../context/TaskContext";
 
 export default function TaskForm() {

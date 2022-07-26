@@ -22,7 +22,35 @@ export default function Home() {
     else if (statusTab.dataset.status === 'true') setTaskStatus(true);
     else setTaskStatus(null);
     // then render items of TaskList based on the status state (true - done, false - doing, null - all tasks)
+  };
+
+  const openFormMobile = () => {
+    const formMobile = document.querySelector('.my-form-mobile');
+    formMobile.closest('.modal').classList.add('is-active');
   }
+
+  const addFormMobileEvents = () => {
+    // open form on mobile
+    const plusBtn = document.querySelector('.plus-btn');
+    plusBtn.addEventListener('click', openFormMobile);
+
+    // close form on mobile
+    const modalBg = document.querySelector('.modal-background');
+    modalBg.closest('.modal').addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal-background')) {
+        modalBg.closest('.modal').classList.remove('is-active'); 
+      }
+    });
+  };
+
+  const removeFormMobileEvents = () => {
+    const plusBtn = document.querySelector('.plus-btn');
+    plusBtn.removeEventListener('click', openFormMobile); 
+
+    document.querySelector('.modal-background').closest('.modal').removeEventListener('click', (e) => {
+      e.target.classList.remove('is-active');
+    });
+  };
 
   const boxShadow = {
     boxShadow: '0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)',
@@ -36,15 +64,17 @@ export default function Home() {
 
   useEffect(() => {
     const tabs = document.querySelectorAll('.task-status-item');
-
     tabs.forEach(tab => {
       tab.addEventListener('click', changeActiveTab);
     });
+
+    addFormMobileEvents();
   
     return () => {
       tabs.forEach(tab => {
         tab.removeEventListener('click', changeActiveTab);
       });
+      removeFormMobileEvents();
     };
   }, []);
 
@@ -59,11 +89,11 @@ export default function Home() {
         </div>
       </div>
 
-      <button type='button' className='button home-btn is-primary has-text-light is-focused is-hidden-desktop' style={{ ...homeBtnStyle, left: '1rem' }}>
+      <button type='button' className='button plus-btn is-primary has-text-light is-focused is-hidden-desktop' style={{ ...homeBtnStyle, left: '1rem' }}>
         <FaPlus />
       </button>
 
-      <button type='button' className='button home-btn is-danger has-text-light is-focused' style={{ ...homeBtnStyle, right: '1rem' }} onClick={clearTasks}>
+      <button type='button' className='button is-danger has-text-light is-focused' style={{ ...homeBtnStyle, right: '1rem' }} onClick={clearTasks}>
         <FaTrashAlt />
       </button>
     </div>

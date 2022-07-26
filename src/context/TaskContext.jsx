@@ -92,26 +92,35 @@ export function TaskProvider(props) {
   };
 
   const editTask = (task) => {
+    document.querySelector('.plus-btn').click();
     setEditStatus({
       item: task,
       edit: true,
     });
 
-    const editTitle = document.getElementById('title').value = task.title;
-    setTitle(editTitle);
+    const editTitle = document.getElementById('title');
+    editTitle.value = task.title;
+    document.getElementById('title-mobile').value = task.title;
+    setTitle(editTitle.value);
 
-    const editDes = document.getElementById('description').value = task.description;
-    setDescription(editDes);
+    let editDes = document.getElementById('description');
+    editDes.value = task.description;
+    document.getElementById('description-mobile').value = task.description;
+    setDescription(editDes.value);
 
     setDate(new Date(task.deadline));
 
     const priorityField = document.getElementById('priority');
+    const priorityFieldMobile = document.getElementById('priority-mobile');
     if (task.priority === 'high') {
       priorityField.value = 3;
+      priorityFieldMobile.value = 3;
     } else if (task.priority === 'medium') {
       priorityField.value = 2;
+      priorityFieldMobile.value = 2;
     } else {
       priorityField.value = 1;
+      priorityFieldMobile.value = 1;
     }
     setPriority(priorityField.value);
   };
@@ -172,13 +181,20 @@ export function TaskProvider(props) {
     }
 
     clearForm();
+    const modal = document.querySelector('.modal');
+    if (modal.classList.contains('is-active')) {
+      modal.classList.remove('is-active');
+    }
   };
 
   const clearForm = () => {
     document.querySelector('#title').value = '';
+    document.querySelector('#title-mobile').value = '';
     document.querySelector('#description').value = '';
+    document.querySelector('#description-mobile').value = '';
     setDate(new Date());
     document.querySelector('#priority').value = '0';
+    document.querySelector('#priority-mobile').value = '0';
   };
 
   const clearTasks = () => {

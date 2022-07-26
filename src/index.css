@@ -55,3 +55,14 @@ sup {
 .has-text-warning {
   color: #ffbb00!important;
 }
+
+.my-form-mobile {
+  position: relative;
+  height: 100%;
+}
+
+.modal-content {
+  width: 85%;
+  height: 100%;
+  background-color: #ffffff;
+}

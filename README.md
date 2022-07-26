@@ -22,17 +22,16 @@ A simple tasks management application using **React**
     * [x] edit
     * [x] remove
     * [x] toggle completed
-6. [ ] Other TaskForm for mobile
-7. [ ] Modals for notifications
+6. [x] Other TaskForm for mobile
+7. [ ] Refactor code (task actions, states)
 8. [ ] Use localStorage
-9. [ ] Refactor code (task actions, states)
-10. [ ] Sort tasks by:
+9. [ ] Sort tasks by:
     * [x] last modified (default)
     * [ ] priorities
     * [ ] datetime
         * today
         * next week
-11. [ ] Unit tests?
+10. [ ] Unit tests?
 
 ## Summary
 
