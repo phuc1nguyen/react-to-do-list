@@ -12,7 +12,7 @@ export default function TaskItem(props) {
           <p className="card-header-title">
             {props.task.title}
           </p>
-          <button className="card-header-icon py-1 px-3" aria-label="complete task" onClick={() => completeTask(props.task)}>
+          <button className="card-header-icon py-1 px-3" aria-label="complete task" title="Complete" onClick={() => completeTask(props.task)}>
             {!props.task.status ? (
               <span className="icon has-text-success">
                 <FaCalendarCheck />
@@ -23,12 +23,12 @@ export default function TaskItem(props) {
               </span>
             )}
           </button>
-          <button className="card-header-icon py-1 px-3" aria-label="edit task" onClick={() => editTask(props.task)}>
+          <button className="card-header-icon py-1 px-3" aria-label="edit task" title="Edit" onClick={() => editTask(props.task)}>
             <span className="icon has-text-info">
               <FaEdit />
             </span>
           </button>
-          <button className="card-header-icon py-1 px-3" aria-label="remove task" onClick={() => removeTask(props.task)}>
+          <button className="card-header-icon py-1 px-3" aria-label="remove task" title="Remove" onClick={() => removeTask(props.task)}>
             <span className="icon has-text-danger">
               <FaTrash />
             </span>
