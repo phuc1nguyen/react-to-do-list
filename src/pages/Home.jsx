@@ -30,11 +30,7 @@ export default function Home() {
     document.querySelector('html').classList.add('is-clipped');
   };
 
-  const addFormMobileEvents = () => {
-    // open form on mobile
-    const plusBtn = document.querySelector('.plus-btn');
-    plusBtn.addEventListener('click', openFormMobile);
-
+  const closeFormMobileEvent = () => {
     // close form on mobile
     const modalBg = document.querySelector('.modal-background');
     modalBg.closest('.modal').addEventListener('click', (e) => {
@@ -42,12 +38,10 @@ export default function Home() {
         modalBg.closest('.modal').classList.remove('is-active'); 
       }
     });
+    document.querySelector('.is-clipped').remove('is-clipped');
   };
 
-  const removeFormMobileEvents = () => {
-    const plusBtn = document.querySelector('.plus-btn');
-    plusBtn.removeEventListener('click', openFormMobile); 
-
+  const removeCloseFormMobileEvent = () => {
     const modalBg = document.querySelector('.modal-background');
     modalBg.closest('.modal').removeEventListener('click', (e) => {
       if (e.target.classList.contains('modal-background')) {
@@ -67,38 +61,18 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const test = JSON.stringify([
-      {
-        id: 1,
-        title: "Task 1",
-        description: "This is a sample to do task and you need to complete it",
-        deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
-        priority: "medium",
-        status: false,
-      },
-      {
-        id: 2,
-        title: "Task 2",
-        description: "This is a sample to do task and you have completed it",
-        deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
-        priority: "low",
-        status: true,
-      },
-    ]);
-    localStorage.setItem('tasks', test);
-
+    // acts as DOMContentLoaded event
+    closeFormMobileEvent();
     const tabs = document.querySelectorAll('.task-status-item');
     tabs.forEach(tab => {
       tab.addEventListener('click', changeActiveTab);
     });
-
-    addFormMobileEvents();
   
     return () => {
+      removeCloseFormMobileEvent();
       tabs.forEach(tab => {
         tab.removeEventListener('click', changeActiveTab);
       });
-      removeFormMobileEvents();
     };
   }, []);
 
@@ -113,7 +87,7 @@ export default function Home() {
         </div>
       </div>
 
-      <button type='button' className='button plus-btn is-primary has-text-light is-focused is-hidden-desktop' style={{ ...homeBtnStyle, left: '1rem' }}>
+      <button type='button' className='button is-primary has-text-light is-focused is-hidden-desktop' style={{ ...homeBtnStyle, left: '1rem' }} onClick={openFormMobile}>
         <FaPlus />
       </button>
 
