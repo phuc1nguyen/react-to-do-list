@@ -66,17 +66,18 @@ export function TaskProvider(props) {
       edit: true,
     });
 
-    const editTitle = document.getElementById('title');
-    editTitle.value = task.title;
-    document.getElementById('title-mobile').value = task.title;
-    setTitle(editTitle.value);
+    const editTitle = task.title;
+    document.getElementById('title').value = editTitle;
+    document.getElementById('title-mobile').value = editTitle;
+    setTitle(editTitle);
 
-    let editDes = document.getElementById('description');
-    editDes.value = task.description;
-    document.getElementById('description-mobile').value = task.description;
-    setDescription(editDes.value);
+    const editDescription = task.description;
+    document.getElementById('description').value = editDescription;
+    document.getElementById('description-mobile').value = editDescription;
+    setDescription(editDescription);
 
-    setDate(new Date(task.deadline));
+    const editDatetime = task.datetime;
+    setDate(new Date(editDatetime));
 
     const priorityField = document.getElementById('priority');
     const priorityFieldMobile = document.getElementById('priority-mobile');
@@ -97,7 +98,6 @@ export function TaskProvider(props) {
     const newTasks = tasks.filter((item) => task.id !== item.id);
 
     setTasks([task, ...newTasks]);
-    setEditStatus({item: {}, edit: false});
     resetStates();
   };
 
@@ -112,6 +112,7 @@ export function TaskProvider(props) {
     setDescription('');
     setDate(new Date());
     setPriority(0);
+    setEditStatus({item: {}, edit: false});
   };
 
   const handleSubmit = (e) => {
@@ -137,7 +138,7 @@ export function TaskProvider(props) {
         id: uuidv4(),
         title: title,
         description: description,
-        deadline: String(date),
+        datetime: String(date),
         priority: priorityStr,
         status: false,
       };
@@ -148,7 +149,7 @@ export function TaskProvider(props) {
         id: editStatus.item.id,
         title: title,
         description: description,
-        deadline: String(date),
+        datetime: String(date),
         priority: priorityStr,
         status: editStatus.item.status,
       }
@@ -161,6 +162,10 @@ export function TaskProvider(props) {
     if (modal.classList.contains('is-active')) {
       modal.classList.remove('is-active');
     }
+    const html = document.querySelector('html');
+    if (html.classList.contains('is-clipped')) {
+      html.classList.remove('is-clipped');
+    }
   };
 
   const clearForm = () => {
@@ -168,9 +173,9 @@ export function TaskProvider(props) {
     document.querySelector('#title-mobile').value = '';
     document.querySelector('#description').value = '';
     document.querySelector('#description-mobile').value = '';
-    setDate(new Date());
     document.querySelector('#priority').value = '0';
     document.querySelector('#priority-mobile').value = '0';
+    resetStates();
   };
 
   const clearTasks = () => {

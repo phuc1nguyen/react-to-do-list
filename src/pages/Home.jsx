@@ -36,12 +36,17 @@ export default function Home() {
     plusBtn.addEventListener('click', openFormMobile);
 
     // close form on mobile
+    const html = document.querySelector('html');
     const modalBg = document.querySelector('.modal-background');
     modalBg.closest('.modal').addEventListener('click', (e) => {
       if (e.target.classList.contains('modal-background')) {
-        modalBg.closest('.modal').classList.remove('is-active'); 
+        modalBg.closest('.modal').classList.remove('is-active');
+      }
+      if (html.classList.contains('is-clipped')) {
+        html.classList.remove('is-clipped');
       }
     });
+    
   };
 
   const removeFormMobileEvents = () => {
@@ -72,7 +77,7 @@ export default function Home() {
         id: 1,
         title: "Task 1",
         description: "This is a sample to do task and you need to complete it",
-        deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
+        datetime: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
         priority: "medium",
         status: false,
       },
@@ -80,7 +85,7 @@ export default function Home() {
         id: 2,
         title: "Task 2",
         description: "This is a sample to do task and you have completed it",
-        deadline: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
+        datetime: "Sat Jul 23 2022 12:44:03 GMT+0700 (Indochina Time)",
         priority: "low",
         status: true,
       },

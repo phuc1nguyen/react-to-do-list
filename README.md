@@ -24,7 +24,7 @@ A simple tasks management application using **React**
     * [x] toggle completed
 6. [x] Other TaskForm for mobile
 7. [ ] Refactor code (task actions, states)
-8. [ ] Use localStorage
+8. [x] Use localStorage
 9. [ ] Sort tasks by:
     * [x] last modified (default)
     * [ ] priorities
@@ -42,5 +42,5 @@ A simple tasks management application using **React**
 
 ### What to improve
 
-* First
-* Second
+* Toasts for notifications instead of window.alert
+* 
