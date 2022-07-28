@@ -12,7 +12,6 @@ export default function TaskForm() {
     dispatch,
   } = useContext(TaskContext);
 
-
   return (
     <form className="my-form h-100" onSubmit={handleSubmit}>
       <div className="field">

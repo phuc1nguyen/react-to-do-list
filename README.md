@@ -29,8 +29,6 @@ A simple tasks management application using **React**
     * [x] last modified (default)
     * [ ] priorities
     * [ ] datetime
-        * today
-        * next week
 10. [ ] Unit tests?
 
 ## Summary

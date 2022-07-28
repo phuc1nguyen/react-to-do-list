@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   const closeFormMobileEvent = () => {
-    // close form on mobile
+    // close form on mobile devices
     const html = document.querySelector('html');
     const modalBg = document.querySelector('.modal-background');
 

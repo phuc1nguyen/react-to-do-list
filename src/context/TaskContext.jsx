@@ -14,7 +14,6 @@ export function TaskProvider(props) {
       item: {},
       edit: false,
     },
-    // tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [],
     tasks: [
       {
         id: 1,
@@ -116,7 +115,7 @@ export function TaskProvider(props) {
     }
 
     clearForm();
-    // Close form on mobile
+    // close form on mobile devices
     const modal = document.querySelector('.modal');
     if (modal.classList.contains('is-active')) {
       modal.classList.remove('is-active');
