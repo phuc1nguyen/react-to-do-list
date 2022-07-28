@@ -2,12 +2,13 @@ import DatePicker from "react-widgets/DatePicker";
 import "react-widgets/styles.css";
 import { useContext } from "react";
 import TaskContext from "../../context/TaskContext";
-import { handleSubmit } from "../../actions/taskActions";
 
 export default function TaskFormMobile() {
   const { 
     datetime,
     editStatus,
+    clearForm,
+    handleSubmit,
     dispatch,
   } = useContext(TaskContext);
 
@@ -31,7 +32,7 @@ export default function TaskFormMobile() {
           </div>
 
           <div className="field">
-            <label htmlFor="datetime-mobile" className="label">Deadline</label>
+            <label htmlFor="datetime-mobile" className="label">Datetime</label>
             <div className="control flex space-x-2 w-full">
               <DatePicker
                 value={datetime}

@@ -67,3 +67,7 @@ sup {
   max-height: unset;
   background-color: #ffffff;
 }
+
+.card-header-title {
+  font-size: 20px;
+}

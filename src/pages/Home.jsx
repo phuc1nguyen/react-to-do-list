@@ -32,20 +32,25 @@ export default function Home() {
 
   const closeFormMobileEvent = () => {
     // close form on mobile
+    const html = document.querySelector('html');
     const modalBg = document.querySelector('.modal-background');
+
     modalBg.closest('.modal').addEventListener('click', (e) => {
       if (e.target.classList.contains('modal-background')) {
         modalBg.closest('.modal').classList.remove('is-active'); 
+        html.classList.remove('is-clipped');
       }
     });
-    document.querySelector('.is-clipped').remove('is-clipped');
   };
 
   const removeCloseFormMobileEvent = () => {
+    const html = document.querySelector('html');
     const modalBg = document.querySelector('.modal-background');
+
     modalBg.closest('.modal').removeEventListener('click', (e) => {
       if (e.target.classList.contains('modal-background')) {
         modalBg.closest('.modal').classList.remove('is-active'); 
+        html.classList.remove('is-clipped');
       }
     });
   };

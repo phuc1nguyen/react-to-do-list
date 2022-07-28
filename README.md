@@ -23,7 +23,7 @@ A simple tasks management application using **React**
     * [x] remove
     * [x] toggle completed
 6. [x] Other TaskForm for mobile
-7. [ ] Refactor code (task actions, states)
+7. [x] Refactor code (task actions, states)
 8. [ ] Use localStorage
 9. [ ] Sort tasks by:
     * [x] last modified (default)
@@ -37,7 +37,7 @@ A simple tasks management application using **React**
 
 ### What I learned
 
-* First
+* Remember the rules of hooks
 * Second
 
 ### What to improve
