@@ -77,7 +77,7 @@ export default function TaskItem(props) {
       dispatch({
         type: "TASK_REMOVE",
         payload: task,
-      })
+      });
     }
   };
 

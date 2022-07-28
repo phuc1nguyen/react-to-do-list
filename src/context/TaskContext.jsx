@@ -14,24 +14,7 @@ export function TaskProvider(props) {
       item: {},
       edit: false,
     },
-    tasks: [
-      {
-        id: 1,
-        title: "Task 1",
-        description: "This is the first task",
-        datetime: "Wed Jul 27 2022 21:46:37 GMT+0700 (Indochina Time)",
-        priority: "high",
-        status: false,
-      },
-      {
-        id: 2,
-        title: "Task 2",
-        description: "This is the second task",
-        datetime: "Wed Jul 27 2022 21:46:37 GMT+0700 (Indochina Time)",
-        priority: "low",
-        status: true,
-      }
-    ],
+    tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [],
   };
   const [state, dispatch] = useReducer(TaskReducer, initState);
 
@@ -59,7 +42,7 @@ export function TaskProvider(props) {
     document.querySelector('#description-mobile').value = "";
     document.querySelector('#priority').value = "0";
     document.querySelector('#priority-mobile').value = "0";
-    dispatch({type: "FORM_RESET"});
+    dispatch({ type: "FORM_RESET" });
   };
 
   const clearTasks = () => {
@@ -68,9 +51,8 @@ export function TaskProvider(props) {
       if (confirm("Clear all tasks and can not undo?")) {
         dispatch({ type: "TASK_CLEAR" });
       }
-    } else {
-      alert("There is no task");
     }
+    alert("There is no task");
   };
 
   const handleSubmit = (e) => {
@@ -114,6 +96,7 @@ export function TaskProvider(props) {
       updateTask(updatedTask);
     }
 
+    // localStorage.setItem('tasks', JSON.stringify(state.tasks));
     clearForm();
     // close form on mobile devices
     const modal = document.querySelector('.modal');

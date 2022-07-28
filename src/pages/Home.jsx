@@ -7,6 +7,24 @@ import TaskContext from '../context/TaskContext';
 export default function Home() {
   const { clearTasks } = useContext(TaskContext);
   const [taskStatus, setTaskStatus] = useState(false);
+  const tasks = [
+    {
+      id: 1,
+      title: "Task 1",
+      description: "This is the first task",
+      datetime: "Wed Jul 27 2022 21:46:37 GMT+0700 (Indochina Time)",
+      priority: "high",
+      status: false,
+    },
+    {
+      id: 2,
+      title: "Task 2",
+      description: "This is the second task",
+      datetime: "Wed Jul 27 2022 21:46:37 GMT+0700 (Indochina Time)",
+      priority: "low",
+      status: true,
+    }
+  ];
 
   const changeActiveTab = e => {
     // update class is-active on task status bar, remove is-active class from <ul>'s child
@@ -17,7 +35,7 @@ export default function Home() {
     statusTab.classList.add('is-active');
     // update state to display tasks based on which tab you choose
     // this below part (change state of TaskDisplay to choose tab then display tasks with that state) could be placed in TaskDisplay
-    // but since it's related to the styles above -> lift it up here (Home.jsx)
+    // but since it's related to the click event on task tabs -> lift it up here (Home.jsx)
     if (statusTab.dataset.status === 'false') setTaskStatus(false);
     else if (statusTab.dataset.status === 'true') setTaskStatus(true);
     else setTaskStatus(null);
@@ -73,12 +91,14 @@ export default function Home() {
     tabs.forEach(tab => {
       tab.addEventListener('click', changeActiveTab);
     });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   
     return () => {
       removeCloseFormMobileEvent();
       tabs.forEach(tab => {
         tab.removeEventListener('click', changeActiveTab);
       });
+      localStorage.clear();
     };
   }, []);
 

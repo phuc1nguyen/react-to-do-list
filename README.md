@@ -36,9 +36,9 @@ A simple tasks management application using **React**
 ### What I learned
 
 * Remember the rules of hooks
-* Second
+* Working on different branches of Git 
 
 ### What to improve
 
 * Toasts for notifications instead of window.alert
-* 
+* Learn more about pull requests, branches merging (on command line)
