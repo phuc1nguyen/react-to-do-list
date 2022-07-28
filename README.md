@@ -42,5 +42,5 @@ A simple tasks management application using **React**
 
 ### What to improve
 
-* First
-* Second
+* Toasts for notifications instead of window.alert
+* 

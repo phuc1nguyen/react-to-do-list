@@ -108,6 +108,7 @@ export function TaskProvider(props) {
         title: state.title,
         description: state.description,
         datetime: String(state.datetime),
+
         priority: priorityStr,
         status: state.editStatus.item.status,
       }

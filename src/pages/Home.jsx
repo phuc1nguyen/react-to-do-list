@@ -41,6 +41,7 @@ export default function Home() {
         html.classList.remove('is-clipped');
       }
     });
+    
   };
 
   const removeCloseFormMobileEvent = () => {
