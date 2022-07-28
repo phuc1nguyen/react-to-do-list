@@ -31,6 +31,15 @@ A simple tasks management application using **React**
     * [ ] datetime
 10. [ ] Unit tests?
 
+## Installing
+
+Clone the repository then run
+
+```
+cd react-to-do-list && yarn install
+yarn dev
+```
+
 ## Summary
 
 ### What I learned

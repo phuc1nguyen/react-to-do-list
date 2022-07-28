@@ -51,8 +51,9 @@ export function TaskProvider(props) {
       if (confirm("Clear all tasks and can not undo?")) {
         dispatch({ type: "TASK_CLEAR" });
       }
+    } else {
+      alert("There is no task");
     }
-    alert("There is no task");
   };
 
   const handleSubmit = (e) => {
