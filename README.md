@@ -29,7 +29,6 @@ A simple tasks management application using **React**
     * [x] last modified (default)
     * [ ] priorities
     * [ ] datetime
-10. [ ] Unit tests?
 
 ## Installing
 
@@ -44,10 +43,12 @@ yarn dev
 
 ### What I learned
 
-* Remember the rules of hooks
-* Working on different branches of Git, learn more about pull requests, merging branches
+* Remember the [rules of hooks](https://reactjs.org/docs/hooks-rules.html)
+* Work on different Git branches, create pull requests 
+* Deploy on Netlify
 
 ### What to improve
 
 * Toasts for notifications instead of window.alert
 * Track number of tasks on each tabs
+* Write unit tests for **React** app
