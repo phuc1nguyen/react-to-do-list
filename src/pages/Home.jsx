@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import TaskForm from '../components/tasks/TaskForm';
-import TaskDisplay from '../components/tasks/TaskDisplay';
+import TaskStatusBar from '../components/tasks/TaskStatusBar';
+import TaskList from '../components/tasks/TaskList';
 import { FaPlus, FaTrashAlt } from 'react-icons/fa';
 import TaskContext from '../context/TaskContext';
 
@@ -109,7 +110,8 @@ export default function Home() {
           <TaskForm />
         </div>
         <div className="column p-5">
-          <TaskDisplay status={taskStatus} />
+          <TaskStatusBar status={taskStatus} />
+          <TaskList status={taskStatus} />
         </div>
       </div>
 
