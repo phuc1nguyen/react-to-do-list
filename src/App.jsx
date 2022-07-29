@@ -6,15 +6,17 @@ import TaskFormMobile from './components/tasks/TaskFormMobile';
 
 export default function App() {
   return (
-    <TaskProvider>
-      <div className="wrapper">
-          <Header />
-          <main className="main-content">
-            <Home />
-            <TaskFormMobile />
-          </main>
-          <Footer />
-      </div>
-    </TaskProvider>
+    <div className="wrapper">
+      <Header />
+
+      <TaskProvider>
+        <main className="main-content">
+          <Home />
+          <TaskFormMobile />
+        </main>
+      </TaskProvider>
+
+      <Footer />
+    </div>
   );
 }
