@@ -43,17 +43,14 @@ const TaskReducer = (state, action) => {
     case "TASK_CREATE":
       return {
         ...state,
-        tasks: [
-          action.payload,
-          ...state.tasks
-        ],
+        tasks: [action.payload, ...state.tasks],
       };
     case "TASK_UPDATE":
       return {
         ...state,
         tasks: [
           action.payload,
-          ...state.tasks.filter((item) => item.id !== action.payload.id)
+          ...state.tasks.filter((item) => item.id !== action.payload.id),
         ],
       };
     case "TASK_REMOVE":
@@ -68,7 +65,7 @@ const TaskReducer = (state, action) => {
       };
     default:
       return state;
-  };
+  }
 };
 
 export default TaskReducer;

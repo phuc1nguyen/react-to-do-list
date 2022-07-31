@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import TaskReducer from "../reducers/TaskReducer";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const TaskContext = createContext();
 
@@ -14,7 +14,9 @@ export function TaskProvider(props) {
       item: {},
       edit: false,
     },
-    tasks: localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [],
+    tasks: localStorage.getItem("tasks")
+      ? JSON.parse(localStorage.getItem("tasks"))
+      : [],
   };
   const [state, dispatch] = useReducer(TaskReducer, initState);
 
@@ -30,18 +32,18 @@ export function TaskProvider(props) {
     dispatch({
       type: "TASK_UPDATE",
       payload: updatedTask,
-    }) 
+    });
     dispatch({ type: "FORM_RESET" });
   };
 
   const clearForm = () => {
     // reset form fields and states
-    document.querySelector('#title').value = "";
-    document.querySelector('#title-mobile').value = "";
-    document.querySelector('#description').value = "";
-    document.querySelector('#description-mobile').value = "";
-    document.querySelector('#priority').value = "0";
-    document.querySelector('#priority-mobile').value = "0";
+    document.querySelector("#title").value = "";
+    document.querySelector("#title-mobile").value = "";
+    document.querySelector("#description").value = "";
+    document.querySelector("#description-mobile").value = "";
+    document.querySelector("#priority").value = "0";
+    document.querySelector("#priority-mobile").value = "0";
     dispatch({ type: "FORM_RESET" });
   };
 
@@ -56,22 +58,38 @@ export function TaskProvider(props) {
     }
   };
 
+  const handleChange = (e) => {
+    // handle form's fields change events
+    if (e.target === undefined) {
+      // <DatePicker /> returns e as a JS Date object
+      dispatch({
+        type: "FORM_SET_DATETIME",
+        payload: e,
+      });
+    } else {
+      dispatch({
+        type: `FORM_SET_${e.target.name.toUpperCase()}`,
+        payload: e.target.value,
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (state.title.trim() === '') {
+    if (state.title.trim() === "") {
       // task title is required
       alert("Please enter task title");
       return;
     }
 
-    let priorityStr = '';
-    if (state.priority === '3') {
-      priorityStr = 'high';
-    } else if (state.priority === '2') {
-      priorityStr = 'medium';
+    let priorityStr = "";
+    if (state.priority === "3") {
+      priorityStr = "high";
+    } else if (state.priority === "2") {
+      priorityStr = "medium";
     } else {
-      priorityStr = 'low';
+      priorityStr = "low";
     }
 
     if (!state.editStatus.edit) {
@@ -93,31 +111,34 @@ export function TaskProvider(props) {
 
         priority: priorityStr,
         status: state.editStatus.item.status,
-      }
+      };
       updateTask(updatedTask);
     }
 
     // localStorage.setItem('tasks', JSON.stringify(state.tasks));
     clearForm();
     // close form on mobile devices
-    const modal = document.querySelector('.modal');
-    if (modal.classList.contains('is-active')) {
-      modal.classList.remove('is-active');
+    const modal = document.querySelector(".modal");
+    if (modal.classList.contains("is-active")) {
+      modal.classList.remove("is-active");
     }
-    const html = document.querySelector('html');
-    if (html.classList.contains('is-clipped')) {
-      html.classList.remove('is-clipped');
+    const html = document.querySelector("html");
+    if (html.classList.contains("is-clipped")) {
+      html.classList.remove("is-clipped");
     }
   };
 
   return (
-    <TaskContext.Provider value={{
-      ...state,
-      clearForm,
-      clearTasks,
-      handleSubmit,
-      dispatch,
-    }}>
+    <TaskContext.Provider
+      value={{
+        ...state,
+        handleChange,
+        clearForm,
+        clearTasks,
+        handleSubmit,
+        dispatch,
+      }}
+    >
       {props.children}
     </TaskContext.Provider>
   );

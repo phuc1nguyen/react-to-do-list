@@ -1,5 +1,5 @@
 body {
-  font-family: 'Edu NSW ACT Foundation';
+  font-family: "Edu NSW ACT Foundation";
   user-select: none;
   scroll-behavior: smooth;
 }
@@ -53,7 +53,7 @@ sup {
 }
 
 .has-text-warning {
-  color: #ffbb00!important;
+  color: #ffbb00 !important;
 }
 
 .my-form-mobile {
