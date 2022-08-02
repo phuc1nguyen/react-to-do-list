@@ -6,26 +6,8 @@ import { FaPlus, FaTrashAlt } from "react-icons/fa";
 import TaskContext from "../context/TaskContext";
 
 export default function Home() {
-  const { clearTasks } = useContext(TaskContext);
+  const { tasks, clearTasks } = useContext(TaskContext);
   const [taskStatus, setTaskStatus] = useState(false);
-  const tasks = [
-    {
-      id: 1,
-      title: "Task 1",
-      description: "This is the first task",
-      datetime: "Wed Jul 27 2022 21:46:37 GMT+0700 (Indochina Time)",
-      priority: "high",
-      status: false,
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "This is the second task",
-      datetime: "Wed Jul 27 2022 21:46:37 GMT+0700 (Indochina Time)",
-      priority: "low",
-      status: true,
-    },
-  ];
 
   const changeActiveTab = (e) => {
     // update class is-active on task status bar, remove is-active class from <ul>'s child
@@ -102,6 +84,10 @@ export default function Home() {
       localStorage.clear();
     };
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div className="tasks-wrapper w-100">

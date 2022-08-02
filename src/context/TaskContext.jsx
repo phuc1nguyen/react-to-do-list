@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import TaskReducer from "../reducers/TaskReducer";
 import { v4 as uuidv4 } from "uuid";
 
@@ -115,7 +115,6 @@ export function TaskProvider(props) {
       updateTask(updatedTask);
     }
 
-    // localStorage.setItem('tasks', JSON.stringify(state.tasks));
     clearForm();
     // close form on mobile devices
     const modal = document.querySelector(".modal");
