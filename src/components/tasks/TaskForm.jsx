@@ -3,20 +3,28 @@ import "react-widgets/styles.css";
 import { useContext } from "react";
 import TaskContext from "../../context/TaskContext";
 
-export default function TaskForm() {
+const mobileAttr = (deviceProp, name) => {
+  if (deviceProp === "mobile") return name + "-mobile";
+  return name;
+};
+
+export default function TaskForm(props) {
   const { datetime, editStatus, clearForm, handleChange, handleSubmit } =
     useContext(TaskContext);
 
   return (
-    <form className="my-form h-100" onSubmit={handleSubmit}>
+    <form
+      className={props.device === "mobile" ? "my-form-mobile" : "my-form h-100"}
+      onSubmit={handleSubmit}
+    >
       <div className="field">
-        <label htmlFor="title" className="label">
+        <label htmlFor={mobileAttr(props.device, "title")} className="label">
           Title
         </label>
         <div className="control">
           <input
             type="text"
-            id="title"
+            id={mobileAttr(props.device, "title")}
             name="title"
             className="input is-info"
             placeholder="Title"
@@ -26,13 +34,16 @@ export default function TaskForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="description" className="label">
+        <label
+          htmlFor={mobileAttr(props.device, "description")}
+          className="label"
+        >
           Description
         </label>
         <div className="control">
           <textarea
             name="description"
-            id="description"
+            id={mobileAttr(props.device, "description")}
             className="textarea is-info"
             placeholder="More details"
             onChange={handleChange}
@@ -41,7 +52,7 @@ export default function TaskForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="datetime" className="label">
+        <label htmlFor={mobileAttr(props.device, "datetime")} className="label">
           Datetime
         </label>
         <div className="control flex space-x-2 w-full">
@@ -50,12 +61,12 @@ export default function TaskForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="priority" className="label">
+        <label htmlFor={mobileAttr(props.device, "priority")} className="label">
           Priority
         </label>
         <div className="select is-info w-100">
           <select
-            id="priority"
+            id={mobileAttr(props.device, "priority")}
             name="priority"
             className="w-100"
             onChange={handleChange}
@@ -68,7 +79,11 @@ export default function TaskForm() {
         </div>
       </div>
 
-      <div className="form-btns control w-100 is-flex is-justify-content-space-between">
+      <div
+        className={`${
+          props.device === "mobile" ? "mt-6" : "form-btns"
+        } control w-100 is-flex is-justify-content-space-between`}
+      >
         <button type="button" className="button is-danger" onClick={clearForm}>
           CLEAR
         </button>

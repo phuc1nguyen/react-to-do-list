@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import TaskReducer from "../reducers/TaskReducer";
 import { v4 as uuidv4 } from "uuid";
 
@@ -16,7 +16,24 @@ export function TaskProvider(props) {
     },
     tasks: localStorage.getItem("tasks")
       ? JSON.parse(localStorage.getItem("tasks"))
-      : [],
+      : [
+          {
+            id: "1",
+            title: "Task 1",
+            description: "this is the first task",
+            datetime: new Date(),
+            priority: "medium",
+            status: false,
+          },
+          {
+            id: "2",
+            title: "Task 2",
+            description: "this is the second task",
+            datetime: new Date(),
+            priority: "high",
+            status: true,
+          },
+        ],
   };
   const [state, dispatch] = useReducer(TaskReducer, initState);
 
