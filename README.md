@@ -45,6 +45,7 @@ yarn dev
 
 - Remember the [rules of hooks](https://reactjs.org/docs/hooks-rules.html)
 - Work on different Git branches, create pull requests
+- Write cleaner code, same thing with less code
 - Deploy on Netlify
 
 ### What to improve
