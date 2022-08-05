@@ -2,7 +2,7 @@ import Header from "./components/templates/Header";
 import Footer from "./components/templates/Footer";
 import Home from "./pages/Home";
 import { TaskProvider } from "./context/TaskContext";
-import TaskFormMobile from "./components/tasks/TaskFormMobile";
+import TaskForm from "./components/tasks/TaskForm";
 
 export default function App() {
   return (
@@ -12,7 +12,12 @@ export default function App() {
       <TaskProvider>
         <main className="main-content">
           <Home />
-          <TaskFormMobile />
+          <div className="modal is-hidden-desktop">
+            <div className="modal-background"></div>
+            <div className="modal-content p-5">
+              <TaskForm device="mobile" />
+            </div>
+          </div>
         </main>
       </TaskProvider>
 

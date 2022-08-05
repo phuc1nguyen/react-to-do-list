@@ -7,17 +7,17 @@ const iconSpacing = {
 const StatusItems = [
   {
     label: "To Do",
-    value: false,
+    status: false,
     component: <FaCalendarDay style={iconSpacing} />,
   },
   {
     label: "Done",
-    value: true,
+    status: true,
     component: <FaCalendarCheck style={iconSpacing} />,
   },
   {
     label: "All",
-    value: null,
+    status: null,
     component: <FaList style={iconSpacing} />,
   },
 ];
@@ -29,8 +29,10 @@ export default function TaskStatusBar(props) {
         {StatusItems.map((item) => (
           <li
             key={item.label}
-            className={`task-status-item ${props.status === item.value ? "is-active" : ""}`}
-            data-status={item.value}
+            className={`task-status-item ${
+              props.status === item.status ? "is-active" : ""
+            }`}
+            data-status={item.status}
           >
             <a className="has-text-weight-bold">
               {item.component}
@@ -38,35 +40,6 @@ export default function TaskStatusBar(props) {
             </a>
           </li>
         ))}
-        {/* Old Code */}
-        {/* <li className={`task-status-item ${props.status === false ? 'is-active' : ''}`} data-status={false}>
-          <a className="has-text-weight-bold">
-            <FaCalendarDay style={iconSpacing} />
-            <span className="is-hidden-touch">To Do</span>
-          </a>
-        </li>
-        <li
-          className={`task-status-item ${
-            props.status === true ? "is-active" : ""
-          }`}
-          data-status={true}
-        >
-          <a className="has-text-weight-bold">
-            <FaCalendarCheck style={iconSpacing} />
-            <span className="is-hidden-touch">Done</span>
-          </a>
-        </li>
-        <li
-          className={`task-status-item ${
-            props.status === null ? "is-active" : ""
-          }`}
-          data-status={null}
-        >
-          <a className="has-text-weight-bold">
-            <FaList style={iconSpacing} />
-            <span className="is-hidden-touch">All</span>
-          </a>
-        </li> */}
       </ul>
     </div>
   );

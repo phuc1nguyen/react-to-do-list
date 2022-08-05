@@ -5,11 +5,54 @@ import TaskList from "../components/tasks/TaskList";
 import { FaPlus, FaTrashAlt } from "react-icons/fa";
 import TaskContext from "../context/TaskContext";
 
+const boxShadow = {
+  boxShadow:
+    "0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)",
+};
+
+const homeBtnStyle = {
+  zIndex: 1,
+  position: "fixed",
+  bottom: "5rem",
+};
+
+const openFormMobile = () => {
+  const formMobile = document.querySelector(".my-form-mobile");
+  formMobile.closest(".modal").classList.add("is-active");
+  document.querySelector("html").classList.add("is-clipped");
+};
+
+const closeFormMobileEvent = () => {
+  // close form on mobile devices
+  const html = document.querySelector("html");
+  const modalBg = document.querySelector(".modal-background");
+
+  modalBg.closest(".modal").addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal-background")) {
+      modalBg.closest(".modal").classList.remove("is-active");
+      html.classList.remove("is-clipped");
+    }
+  });
+};
+
+const removeCloseFormMobileEvent = () => {
+  const html = document.querySelector("html");
+  const modalBg = document.querySelector(".modal-background");
+
+  modalBg.closest(".modal").removeEventListener("click", (e) => {
+    if (e.target.classList.contains("modal-background")) {
+      modalBg.closest(".modal").classList.remove("is-active");
+      html.classList.remove("is-clipped");
+    }
+  });
+};
+
 export default function Home() {
   const { tasks, clearTasks } = useContext(TaskContext);
   const [taskStatus, setTaskStatus] = useState(false);
 
   const changeActiveTab = (e) => {
+    // this function use hook so keep in component
     // update class is-active on task status bar, remove is-active class from <ul>'s child
     const active = e.target.closest(".task-status").querySelector(".is-active");
     if (active) active.classList.remove("is-active");
@@ -23,48 +66,6 @@ export default function Home() {
     else if (statusTab.dataset.status === "true") setTaskStatus(true);
     else setTaskStatus(null);
     // then render items of TaskList based on the status state (true - done, false - doing, null - all tasks)
-  };
-
-  const openFormMobile = () => {
-    const formMobile = document.querySelector(".my-form-mobile");
-    formMobile.closest(".modal").classList.add("is-active");
-    document.querySelector("html").classList.add("is-clipped");
-  };
-
-  const closeFormMobileEvent = () => {
-    // close form on mobile devices
-    const html = document.querySelector("html");
-    const modalBg = document.querySelector(".modal-background");
-
-    modalBg.closest(".modal").addEventListener("click", (e) => {
-      if (e.target.classList.contains("modal-background")) {
-        modalBg.closest(".modal").classList.remove("is-active");
-        html.classList.remove("is-clipped");
-      }
-    });
-  };
-
-  const removeCloseFormMobileEvent = () => {
-    const html = document.querySelector("html");
-    const modalBg = document.querySelector(".modal-background");
-
-    modalBg.closest(".modal").removeEventListener("click", (e) => {
-      if (e.target.classList.contains("modal-background")) {
-        modalBg.closest(".modal").classList.remove("is-active");
-        html.classList.remove("is-clipped");
-      }
-    });
-  };
-
-  const boxShadow = {
-    boxShadow:
-      "0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)",
-  };
-
-  const homeBtnStyle = {
-    zIndex: 1,
-    position: "fixed",
-    bottom: "5rem",
   };
 
   useEffect(() => {
@@ -96,7 +97,7 @@ export default function Home() {
           className="column p-5 is-two-fifths is-hidden-touch"
           style={boxShadow}
         >
-          <TaskForm />
+          <TaskForm device="desktop" />
         </div>
         <div className="column p-5">
           <TaskStatusBar status={taskStatus} />
