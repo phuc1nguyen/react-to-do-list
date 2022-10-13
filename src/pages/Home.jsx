@@ -23,7 +23,6 @@ const openFormMobile = () => {
 };
 
 const closeFormMobileEvent = () => {
-  // close form on mobile devices
   const html = document.querySelector("html");
   const modalBg = document.querySelector(".modal-background");
 

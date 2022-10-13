@@ -65,7 +65,6 @@ export function TaskProvider(props) {
   };
 
   const clearTasks = () => {
-    // remove all tasks
     if (state.tasks.length > 0) {
       if (confirm("Clear all tasks and can not undo?")) {
         dispatch({ type: "TASK_CLEAR" });
@@ -76,7 +75,6 @@ export function TaskProvider(props) {
   };
 
   const handleChange = (e) => {
-    // handle form's fields change events
     if (e.target === undefined) {
       // <DatePicker /> returns e as a JS Date object
       dispatch({
@@ -95,7 +93,6 @@ export function TaskProvider(props) {
     e.preventDefault();
 
     if (state.title.trim() === "") {
-      // task title is required
       alert("Please enter task title");
       return;
     }
