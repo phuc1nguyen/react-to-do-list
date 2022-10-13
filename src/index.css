@@ -58,7 +58,7 @@ sup {
 
 .my-form-mobile {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .modal-content {
